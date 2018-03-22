@@ -1,4 +1,5 @@
 ﻿using DatabaseService;
+using DatabaseService.Repos;
 using Models;
 using System;
 
@@ -11,8 +12,8 @@ namespace Test
             try
             {
                 ConnectionProvider provider = new ConnectionProvider();
-                UserDataBroker userDataBroker = new UserDataBroker(provider);
-                User user = userDataBroker.GetUser("florian", "pwd");
+                UserDataRepository userDataBroker = new UserDataRepository(provider);
+                User user = userDataBroker.GetUser(null, "florian", "pwd");
 
                 if (user != null)
                 {

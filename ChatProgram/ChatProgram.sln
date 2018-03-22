@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "ChatClient\ChatClient.csproj", "{038108DB-9989-420D-A54C-B25D145300D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseService", "DatabaseService\DatabaseService.csproj", "{983F7065-7895-4FB5-992E-85D6056BB0F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseService", "DatabaseService\DatabaseService.csproj", "{983F7065-7895-4FB5-992E-85D6056BB0F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{0A48BE3A-3495-411E-9C47-C95EB27C4BC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{0A48BE3A-3495-411E-9C47-C95EB27C4BC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\WebService.csproj", "{5919ED71-621B-4F81-8EE9-2B799CA2E60E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0A48BE3A-3495-411E-9C47-C95EB27C4BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A48BE3A-3495-411E-9C47-C95EB27C4BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A48BE3A-3495-411E-9C47-C95EB27C4BC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5919ED71-621B-4F81-8EE9-2B799CA2E60E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5919ED71-621B-4F81-8EE9-2B799CA2E60E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5919ED71-621B-4F81-8EE9-2B799CA2E60E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5919ED71-621B-4F81-8EE9-2B799CA2E60E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
