@@ -4,9 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatClient"
+        xmlns:local1="clr-namespace:ChatClient.View"
+        xmlns:converter="clr-namespace:ChatClient.Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="ChatClient" Height="350" Width="525" WindowState="Maximized">
+    <Window.Resources>
+        <converter:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding CurrentBackground, Converter={StaticResource BitmapToImageSourceConverter}}"/>
+        </Grid.Background>
+        <DockPanel LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Background="#FFD8D8D8"></StackPanel>
+            <ContentControl Content="{Binding CurrentControl}"/>
+        </DockPanel>
     </Grid>
 </Window>

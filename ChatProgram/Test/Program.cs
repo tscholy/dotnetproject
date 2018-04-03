@@ -13,7 +13,7 @@ namespace Test
             {
                 ConnectionProvider provider = new ConnectionProvider();
                 UserDataRepository userDataBroker = new UserDataRepository(provider);
-                User user = userDataBroker.GetUser(null, "florian", "pwd");
+                User user = userDataBroker.Login(null, "florian", "pwd");
 
                 if (user != null)
                 {

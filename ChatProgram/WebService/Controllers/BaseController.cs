@@ -9,6 +9,6 @@ namespace WebService.Controllers
 {
     public class BaseController : ApiController
     {
-        protected static ConnectionProvider provider = new ConnectionProvider();
+      
     }
 }

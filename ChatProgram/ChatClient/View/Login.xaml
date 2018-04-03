@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="ChatClient.View.Login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChatClient.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="396.825" d:DesignWidth="531.746"  x:Name="LoginControl" Height="400" MaxHeight="400" Width="500" MaxWidth="500">
+    <Grid Margin="0,0,0,0">
+        <Grid.Background>
+            <SolidColorBrush Color="White" Opacity="0.5"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition MaxWidth="200" MinWidth="200" Width="200"/>
+            <ColumnDefinition MaxWidth="200" MinWidth="200" Width="200"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Username" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" FontSize="20"/>
+        <Label Content="Password" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Center" FontSize="20"/>
+        <Button Content="Login" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Background="#FF8B744C" FontSize="20" Foreground="White" Click="Click_Login"/>
+        <TextBox x:Name="usernameTextbox" Grid.Column="2" Margin="0,10" Grid.Row="2" TextWrapping="Wrap" Text="" MaxHeight="30" MinHeight="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FFFFA200" Opacity="0.3"/>
+            </TextBox.Background>
+        </TextBox>
+        <PasswordBox x:Name="passwordTextbox" Grid.Column="2" Margin="0,10" Grid.Row="3" MaxHeight="30" MinHeight="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <PasswordBox.Background>
+                <SolidColorBrush Color="#FFFFA200" Opacity="0.3"/>
+            </PasswordBox.Background>
+        </PasswordBox>
+        <Label x:Name="errorLabel" Content="" Grid.Column="2" Margin="0" Grid.Row="4" VerticalAlignment="Center" Foreground="#FFFF4646"/>
+    </Grid>
+</UserControl>

@@ -17,7 +17,7 @@ namespace DatabaseService.Repos
 
         private ConnectionProvider provider;
 
-        public User GetUser(IDbConnection connection, string username, string password)
+        public User Login(IDbConnection connection, string username, string password)
         {
            return connection.Query<User>("SELECT * FROM useraccount WHERE useraccount_username = @username AND useraccount_password = @password", new { username = username, password = password }).FirstOrDefault();
         }
