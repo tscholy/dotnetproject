@@ -11,23 +11,37 @@ namespace ChatClient.View
     public partial class Login : UserControl
     {
         private MainWindowVM mainVM;
+        private UserRestClient userRestClient;
 
-        public Login(MainWindowVM mainWindowVM)
+        public Login(MainWindowVM mainWindowVM, UserRestClient userRest)
         {
             InitializeComponent();
             mainVM = mainWindowVM;
+            userRestClient = userRest;
         }
 
         private void Click_Login(object sender, RoutedEventArgs e)
         {
-            UserRestClient userRestClient = new UserRestClient();
             if(userRestClient.Login(usernameTextbox.Text, passwordTextbox.Password.ToString()))
             {
-                mainVM.CurrentControl = new Chat();
+               
+               mainVM.CurrentControl = new Chat(mainVM, userRestClient);
             }
             else
             {
                 errorLabel.Content = "Credentials are invalid!";
+            }
+        }
+
+        private void Login_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                Click_Login(sender, e);
+            }
+            else
+            {
+                return;
             }
         }
     }

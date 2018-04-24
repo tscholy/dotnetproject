@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\BitmapToImageSourceConverter.cs" />
+    <Compile Include="Converter\ByteToImageSourceConverter.cs" />
     <Compile Include="ViewModel\ChatVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="View\Chat.xaml.cs">
@@ -83,6 +84,9 @@
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebService\BaseRestClient.cs" />
     <Compile Include="WebService\UserRestClient.cs" />
@@ -103,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,6 +144,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{4c500646-b2e4-4846-9644-fca24e426138}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

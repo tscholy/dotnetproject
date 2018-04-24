@@ -1,4 +1,6 @@
 ﻿using ChatClient.ViewModel;
+using ChatClient.WebService;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +23,15 @@ namespace ChatClient.View
     /// </summary>
     public partial class Chat : UserControl
     {
-        public Chat()
+        private MainWindowVM mainWindowVM;
+
+        public Chat(MainWindowVM mainWindow, UserRestClient userRestClient)
         {
             InitializeComponent();
-            this.DataContext = new ChatVM();
+            ChatVM chatVM = new ChatVM(userRestClient.CurrentUser);
+            this.DataContext = chatVM;
+            chatVM.CurrentContacts = userRestClient.GetAllContracts(userRestClient.CurrentUser.Id);          
+            this.mainWindowVM = mainWindow;
         }
     }
 }

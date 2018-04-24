@@ -11,7 +11,7 @@ using WebService.Models;
 
 namespace WebService.Controllers
 {
-    public class UserController : BaseController
+    public class UserController : ApiController
     {
         private UserService userService;
         public UserController ()
@@ -24,6 +24,13 @@ namespace WebService.Controllers
         public User Login([FromBody]User user)
         {
             return userService.Login(user.Username, user.Password);
+        }
+
+        [HttpGet]
+        [ActionName("allcontacts")]
+        public List<BaseUser> GetAllContacts(int user)
+        {
+            return userService.GetAllContacts(user);
         }
     }
 }

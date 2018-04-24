@@ -16,8 +16,12 @@
             <ImageBrush ImageSource="{Binding CurrentBackground, Converter={StaticResource BitmapToImageSourceConverter}}"/>
         </Grid.Background>
         <DockPanel LastChildFill="True">
-            <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Background="#FFD8D8D8"></StackPanel>
-            <ContentControl Content="{Binding CurrentControl}"/>
+            <DockPanel DockPanel.Dock="Top" MaxHeight="40" MinHeight="40" Background="#FFFFA200">
+                
+            </DockPanel>
+            <DockPanel LastChildFill="True" Margin="30,40">           
+                <ContentControl Content="{Binding CurrentControl}"/>
+            </DockPanel>
         </DockPanel>
     </Grid>
 </Window>

@@ -4,16 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChatClient.View"
+             xmlns:converter="clr-namespace:ChatClient.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="463.934" d:DesignWidth="798.361">
+    <UserControl.Resources>
+        <converter:BitmapToImageSourceConverter x:Key="BitmapToImageSourceConverter" />
+        <converter:ByteToImageSourceConverter x:Key="ByteToImageSourceConverter" />
+    </UserControl.Resources>
     <Grid Background="White">
         <DockPanel LastChildFill="True">
             <StackPanel DockPanel.Dock="Top"></StackPanel>
-            <Grid>
+            <Grid RenderTransformOrigin="0.293,0.411">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="400"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition MaxWidth="400" Width="79*"/>
+                    <ColumnDefinition Width="187*"/>
                 </Grid.ColumnDefinitions>
+                <DockPanel LastChildFill="True"  Grid.Column="0">
+                    <Grid DockPanel.Dock="Top" Background="#FFFFD387" MaxHeight="200">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition Height="5"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Content="{Binding Path=CurrentLoggedInUsername}" Foreground="Black" FontSize="14" FontWeight="Bold"/>
+                        <Rectangle RadiusX="20" RadiusY="20" Width="60" Height="60" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left">
+                            <Rectangle.Fill>
+                                <ImageBrush x:Name="myImage" ImageSource="{Binding CurrentLoggedInUsericon, Converter={StaticResource BitmapToImageSourceConverter}}"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <DockPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" LastChildFill="False" >
+                            <Button Margin="10">Chats</Button>
+                            <Button Margin="10">Contacts</Button>
+                            <Button Margin="10">Settings</Button>
+                        </DockPanel>
+                    </Grid>
+                    <ListView Grid.Row="1" ItemsSource="{Binding CurrentContacts}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="True">
+                                    <Label DockPanel.Dock="Bottom" Content="{Binding StatusMessage}"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Rectangle RadiusX="10" RadiusY="10" Width="25" Height="25">
+                                            <Rectangle.Fill>
+                                                <ImageBrush x:Name="myImage" ImageSource="{Binding UserIcon, Converter={StaticResource ByteToImageSourceConverter}}"/>
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                        <Label Content="{Binding Username}" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </DockPanel>                                
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </DockPanel>
             </Grid>
         </DockPanel>
     </Grid>

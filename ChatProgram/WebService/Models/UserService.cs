@@ -10,7 +10,7 @@ namespace WebService.Models
 {
     public class UserService : BaseService
     {
-        UserDataRepository userDataRepo = new UserDataRepository(provider);
+        private UserDataRepository userDataRepo = new UserDataRepository(provider);
 
         public User Register(string firstname, string lastname, string username, string password, string email)
         {
@@ -37,6 +37,16 @@ namespace WebService.Models
         public void Logout(string username)
         {
 
+        }
+
+        public List<BaseUser> GetAllContacts(int currentUser)
+        {
+            List <BaseUser> allContacts = new List<BaseUser>();
+            using (IDbConnection connection = provider.GetConnection())
+            {
+                allContacts = userDataRepo.GetAllContacts(connection, currentUser);
+            }
+            return allContacts;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ChatClient.View;
 using ChatClient.ViewModel;
+using ChatClient.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,14 +23,19 @@ namespace ChatClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private UserRestClient userRestClient;
+
         public MainWindow()
         {
+            userRestClient = new UserRestClient();
             InitializeComponent();
             MainWindowVM mainWindowVM = new MainWindowVM();
-            Login login = new Login(mainWindowVM);
+            Login login = new Login(mainWindowVM, userRestClient);
             mainWindowVM.CurrentControl = login;            
             this.DataContext = mainWindowVM;
 
         }
+
+
     }
 }

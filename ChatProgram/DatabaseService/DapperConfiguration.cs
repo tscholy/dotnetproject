@@ -18,6 +18,7 @@ namespace DatabaseService
             FluentMapper.Initialize(config =>
             {
                config.AddMap(new UserMapper());
+               config.AddMap(new BaseUserMapper());
             });
         }
 

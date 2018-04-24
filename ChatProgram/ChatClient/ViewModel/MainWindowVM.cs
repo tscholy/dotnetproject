@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Models;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -35,5 +36,8 @@ namespace ChatClient.ViewModel
             get { return currentBackground; }
             set { SetProperty(ref currentBackground, value); }
         }
+
+      
+
     }
 }
