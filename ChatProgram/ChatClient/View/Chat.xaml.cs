@@ -24,14 +24,28 @@ namespace ChatClient.View
     public partial class Chat : UserControl
     {
         private MainWindowVM mainWindowVM;
+        private UserRestClient restClient;
+        private ChatVM chatVM;
 
         public Chat(MainWindowVM mainWindow, UserRestClient userRestClient)
         {
             InitializeComponent();
-            ChatVM chatVM = new ChatVM(userRestClient.CurrentUser);
+            chatVM = new ChatVM(userRestClient.CurrentUser);
             this.DataContext = chatVM;
-            chatVM.CurrentContacts = userRestClient.GetAllContracts(userRestClient.CurrentUser.Id);          
+            restClient = userRestClient;
+            chatVM.CurrentContacts = userRestClient.GetAllContacts(userRestClient.CurrentUser.Id);
+            chatVM.CurrentView = new ChatList(userRestClient.CurrentUser, chatVM);
             this.mainWindowVM = mainWindow;
+        }
+
+        private void SelectionChanged_ListView(object sender, SelectionChangedEventArgs e)
+        {
+            //selectedContent.Content = new ChatWindow(null);
+        }
+
+        private void OpenChats_Button(object sender, RoutedEventArgs e)
+        {
+            chatVM.CurrentView = new ChatList(restClient.CurrentUser, chatVM);
         }
     }
 }

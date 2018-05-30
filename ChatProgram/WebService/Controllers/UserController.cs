@@ -1,11 +1,6 @@
 ﻿using DatabaseService;
 using DatabaseService.Repos;
 using Models;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.Http;
 using WebService.Models;
 
@@ -21,16 +16,24 @@ namespace WebService.Controllers
 
         [HttpPost]
         [ActionName("Login")]
-        public User Login([FromBody]User user)
+        public IHttpActionResult Login([FromBody]User user)
         {
-            return userService.Login(user.Username, user.Password);
+            return Ok(userService.Login(user.Username, user.Password));
         }
+        
+        [HttpPost]
+        [ActionName("Register")]
+        public IHttpActionResult Register([FromBody]User user)
+        {
+            return Ok(userService.Register(user));
+        }
+
 
         [HttpGet]
         [ActionName("allcontacts")]
-        public List<BaseUser> GetAllContacts(int user)
+        public IHttpActionResult GetAllContacts(int user)
         {
-            return userService.GetAllContacts(user);
+            return Ok(userService.GetAllContacts(user));
         }
     }
 }

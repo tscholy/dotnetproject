@@ -16,9 +16,10 @@
             <ImageBrush ImageSource="{Binding CurrentBackground, Converter={StaticResource BitmapToImageSourceConverter}}"/>
         </Grid.Background>
         <DockPanel LastChildFill="True">
-            <DockPanel DockPanel.Dock="Top" MaxHeight="40" MinHeight="40" Background="#FFFFA200">
-                
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" MaxHeight="40" MinHeight="40" Background="#FFFFA200">
+                <Button Margin="10" MaxWidth="80" Content="Login" Foreground="#FF8B744C" FontSize="11" Background="White" Click="Button_Login" MaxHeight="40" />
+                <Button Margin="10" MaxWidth="80" Content="Register" Foreground="#FF8B744C" FontSize="11" Background="White" Click="Button_Register" MaxHeight="40"/>
+            </StackPanel>
             <DockPanel LastChildFill="True" Margin="30,40">           
                 <ContentControl Content="{Binding CurrentControl}"/>
             </DockPanel>

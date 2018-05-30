@@ -24,18 +24,28 @@ namespace ChatClient
     public partial class MainWindow : Window
     {
         private UserRestClient userRestClient;
+        private MainWindowVM mainWindowVM = new MainWindowVM();
 
         public MainWindow()
         {
             userRestClient = new UserRestClient();
             InitializeComponent();
-            MainWindowVM mainWindowVM = new MainWindowVM();
             Login login = new Login(mainWindowVM, userRestClient);
             mainWindowVM.CurrentControl = login;            
             this.DataContext = mainWindowVM;
 
         }
 
+        private void Button_Register(object sender, RoutedEventArgs e)
+        {
+            Register register = new Register(mainWindowVM, userRestClient);
+            mainWindowVM.CurrentControl = register;
+        }
 
+        private void Button_Login(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login(mainWindowVM, userRestClient);
+            mainWindowVM.CurrentControl = login;
+        }
     }
 }

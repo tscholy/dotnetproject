@@ -1,4 +1,5 @@
 ﻿using Models;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,7 @@ namespace ChatClient.WebService
                 var request = new RestRequest("user/login", Method.POST);
                 request.AddParameter("username", username);
                 request.AddParameter("password", password);
-
-                request.AddHeader("header", "value");
-
-                var response = client.Execute<User>(request);
-                var content = response.Content;
+                IRestResponse<User> response = client.Execute<User>(request);
                 currentUser = response.Data;
                 if(response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -40,12 +37,12 @@ namespace ChatClient.WebService
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+               
             }
             return false;
         }
 
-        public List<BaseUser> GetAllContracts(int currentUser)
+        public List<BaseUser> GetAllContacts(int currentUser)
         {
             try
             {
@@ -54,18 +51,51 @@ namespace ChatClient.WebService
                 var response = client.Execute<List<BaseUser>>(request);
                 var content = response.Content;
                 List<BaseUser> allContacts = new List<BaseUser>();
-                allContacts = response.Data;
+                allContacts = JsonConvert.DeserializeObject<List<BaseUser>>(content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     return allContacts;
                 }
-                
             }
             catch (Exception e)
             {
-               MessageBox.Show(e.Message);
+                
             }
             return new List<BaseUser>();
+        }
+
+        internal bool Register(User user)
+        {
+            try
+            {
+                var request = new RestRequest("user/register", Method.POST);
+
+                var json = JsonConvert.SerializeObject(user);
+                request.AddParameter("text/json", json, ParameterType.RequestBody);
+                var response = client.Execute<User>(request);
+                var content = response.Content;
+                User newUser = new User();
+                newUser = response.Data;
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    currentUser = newUser;
+                    return true;
+                }
+                else if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

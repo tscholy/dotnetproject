@@ -8,7 +8,7 @@ namespace DatabaseService
 {
     public class ConnectionProvider
     {
-        string mysqlConString = "Server=dbsrv.infeo.at;Database=fhv_chat;Uid=fhv_chat_user;Pwd=test;Ssl Mode=None;";
+        string mysqlConString = "Server=dbsrv.infeo.at;Database=fhv_chat;Uid=fhv_chat_user;Pwd=test;Ssl Mode=None;Allow User Variables=True";
 
 
         public IDbConnection GetConnection()

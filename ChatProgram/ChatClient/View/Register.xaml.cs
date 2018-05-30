@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ChatClient.ViewModel;
+using ChatClient.WebService;
+using Models;
 
 namespace ChatClient.View
 {
@@ -20,9 +23,33 @@ namespace ChatClient.View
     /// </summary>
     public partial class Register : UserControl
     {
-        public Register()
+        private MainWindowVM mainWindowVM;
+        private UserRestClient userRestClient;
+
+        public Register(MainWindowVM mainWindowVM, UserRestClient userRestClient)
         {
             InitializeComponent();
+            this.mainWindowVM = mainWindowVM;
+            this.userRestClient = userRestClient;
+        }
+
+        private void Button_Register(object sender, RoutedEventArgs e)
+        {
+            User user = new User();
+            user.Firstname = firstnameTextbox.Text;
+            user.Lastname = lastnameTextbox.Text;
+            user.Username = usernameTextbox.Text;
+            user.Password = passwordTextbox.Password.ToString();
+            user.StatusMessage = stateMessageTextbox.Text;
+
+            if(userRestClient.Register(user))
+            {
+
+            }
+            else
+            {
+
+            }
         }
     }
 }

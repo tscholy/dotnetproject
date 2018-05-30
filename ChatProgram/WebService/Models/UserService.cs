@@ -12,11 +12,6 @@ namespace WebService.Models
     {
         private UserDataRepository userDataRepo = new UserDataRepository(provider);
 
-        public User Register(string firstname, string lastname, string username, string password, string email)
-        {
-            return null;
-        }
-
         public User Login(string username, string password)
         {
             User newUser;
@@ -30,7 +25,24 @@ namespace WebService.Models
             }
             else
             {
-                throw new Exception("User does not exist");
+                return null;
+            }
+        }
+
+        internal User Register(User user)
+        {
+            User newUser;
+            using (IDbConnection connection = provider.GetConnection())
+            {
+                newUser = userDataRepo.Register(connection, user);
+            }
+            if (newUser != null)
+            {
+                return newUser;
+            }
+            else
+            {
+                return null;
             }
         }
 

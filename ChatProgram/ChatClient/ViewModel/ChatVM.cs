@@ -76,20 +76,24 @@ namespace ChatClient.ViewModel
             get { return currentContacts; }
             set
             {
-                foreach(BaseUser user in value)
+                if (value != null)
                 {
-                    if(user.UserIcon == null)
+                    foreach (BaseUser user in value)
                     {
-                        Bitmap icon = new Bitmap(Properties.Resources.back);
-                        using(var stream = new MemoryStream())
+                        if (user.UserIcon == null)
                         {
-                            icon.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                            user.UserIcon = stream.ToArray();
+                            Bitmap icon = new Bitmap(Properties.Resources.back);
+                            using (var stream = new MemoryStream())
+                            {
+                                icon.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                                user.UserIcon = stream.ToArray();
+                            }
                         }
                     }
+                    SetProperty(ref currentContacts, value);
                 }
-                SetProperty(ref currentContacts, value);
             }
         }
+
     }
 }
