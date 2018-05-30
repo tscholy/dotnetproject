@@ -31,5 +31,15 @@ namespace WebService.Models
             }
             return allChats;
         }
+
+        internal object GetMessagesToChat(int chatid)
+        {
+            List<ChatMessage> allMessages = new List<ChatMessage>();
+            using (IDbConnection connection = provider.GetConnection())
+            {
+                allMessages = chatDataRepo.GetAllMessagesToChat(connection, chatid);
+            }
+            return allMessages;
+        }
     }
 }

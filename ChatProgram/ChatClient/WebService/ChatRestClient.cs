@@ -40,7 +40,7 @@ namespace ChatClient.WebService
 
         internal List<ChatMessage> GetMessegesToChat(int id)
         {
-            return new List<ChatMessage>();
+            return Get<ChatMessage>("chat/messagestochat", "chatid", id).ToList(); ;
         }
 
         internal List<BaseUser> GetAllMembersToChat(int id)

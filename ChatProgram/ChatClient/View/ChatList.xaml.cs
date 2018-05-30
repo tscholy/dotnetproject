@@ -30,6 +30,7 @@ namespace ChatClient.View
         {
             InitializeComponent();
             ChatListVM chatListVM = new ChatListVM();
+            this.chatVM = chatVM;
             this.DataContext = chatListVM;
             chatListVM.CurrentChats = chatRestClient.GetAllChatsforUser(user.Id);
             foreach(Models.Chat chat in chatListVM.CurrentChats)
@@ -40,10 +41,11 @@ namespace ChatClient.View
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = sender as ListViewItem;
-            if (item != null && item.IsSelected)
+            var listView = sender as ListView;
+            Models.Chat item = (Models.Chat)listView.SelectedItem;
+            if (item != null)
             {
-                Models.Chat chat = (Models.Chat)item.Content;
+                Models.Chat chat = item;
                 chatVM.CurrentView = new ChatWindow(chat);
             }          
         }

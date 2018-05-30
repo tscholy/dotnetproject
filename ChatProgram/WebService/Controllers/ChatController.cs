@@ -24,5 +24,12 @@ namespace WebService.Controllers
         {
             return Ok(chatService.GetMembersToChat(chatid));
         }
+
+        [HttpGet]
+        [ActionName("messagestochat")]
+        public IHttpActionResult GetMessagesToChat(int chatid)
+        {
+            return Ok(chatService.GetMessagesToChat(chatid));
+        }
     }
 }

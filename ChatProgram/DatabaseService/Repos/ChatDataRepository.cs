@@ -29,5 +29,10 @@ namespace DatabaseService.Repos
                                             " JOIN useraccount b ON a.chat_member_user_id = b.useraccount_id" +
                                             " WHERE a.chat_member_chat_id = @chatid", new { chatid = chatid }).AsList();
         }
+
+        public List<ChatMessage> GetAllMessagesToChat(IDbConnection connection, int chatid)
+        {
+            return connection.Query<ChatMessage>("SELECT * FROM fhv_chat.chat_messages WHERE chat_messages_chat_id = @chatid", new { chatid = chatid}).AsList();
+        }
     }
 }

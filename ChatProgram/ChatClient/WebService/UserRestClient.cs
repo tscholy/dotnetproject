@@ -29,7 +29,7 @@ namespace ChatClient.WebService
                 request.AddParameter("password", password);
                 IRestResponse<User> response = client.Execute<User>(request);
                 currentUser = response.Data;
-                if(response.StatusCode == System.Net.HttpStatusCode.OK)
+                if(response.StatusCode == System.Net.HttpStatusCode.OK && currentUser != null)
                 {
                     return true;
                 }
@@ -80,10 +80,6 @@ namespace ChatClient.WebService
                 {
                     currentUser = newUser;
                     return true;
-                }
-                else if(response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    return false;
                 }
                 else
                 {
