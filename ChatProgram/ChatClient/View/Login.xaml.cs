@@ -18,6 +18,7 @@ namespace ChatClient.View
             InitializeComponent();
             mainVM = mainWindowVM;
             userRestClient = userRest;
+            mainVM.ShowButtons();
         }
 
         private void Click_Login(object sender, RoutedEventArgs e)
@@ -26,6 +27,7 @@ namespace ChatClient.View
             {
                
                mainVM.CurrentControl = new Chat(mainVM, userRestClient);
+               mainVM.HideButtons();
             }
             else
             {

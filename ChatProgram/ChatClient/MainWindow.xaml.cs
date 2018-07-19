@@ -24,12 +24,20 @@ namespace ChatClient
     public partial class MainWindow : Window
     {
         private UserRestClient userRestClient;
-        private MainWindowVM mainWindowVM = new MainWindowVM();
+        private MainWindowVM mainWindowVM;
+
+        internal void ShowButtons()
+        {
+            loginButton.Visibility = Visibility.Visible;
+            registerButton.Visibility = Visibility.Visible;
+            logoutButton.Visibility = Visibility.Hidden;
+        }
 
         public MainWindow()
         {
-            userRestClient = new UserRestClient();
+            userRestClient = new UserRestClient();            
             InitializeComponent();
+            mainWindowVM = new MainWindowVM(this);
             Login login = new Login(mainWindowVM, userRestClient);
             mainWindowVM.CurrentControl = login;            
             this.DataContext = mainWindowVM;
@@ -42,10 +50,25 @@ namespace ChatClient
             mainWindowVM.CurrentControl = register;
         }
 
+        internal void HideButtons()
+        {
+            loginButton.Visibility = Visibility.Hidden;
+            registerButton.Visibility = Visibility.Hidden;
+            logoutButton.Visibility = Visibility.Visible;
+        }
+
         private void Button_Login(object sender, RoutedEventArgs e)
         {
             Login login = new Login(mainWindowVM, userRestClient);
             mainWindowVM.CurrentControl = login;
+        }
+
+        private void Button_Logout(object sender, RoutedEventArgs e)
+        {
+            userRestClient.CurrentUser = new Models.User();
+            Login login = new Login(mainWindowVM, userRestClient);
+            mainWindowVM.CurrentControl = login;
+            ShowButtons();
         }
     }
 }

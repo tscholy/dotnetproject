@@ -105,6 +105,9 @@
     <Compile Include="View\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebService\BaseRestClient.cs" />
     <Compile Include="WebService\ChatRestClient.cs" />
     <Compile Include="WebService\UserRestClient.cs" />
@@ -137,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

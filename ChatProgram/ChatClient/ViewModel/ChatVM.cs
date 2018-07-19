@@ -21,9 +21,12 @@ namespace ChatClient.ViewModel
         private string currentLoggedInUsername;
         private Bitmap currentLoggedInUsericon;
 
-        public ChatVM(User user)
+        private MainWindowVM mainW; 
+
+        public ChatVM(User user, MainWindowVM mainWindowVM)
         {
             CurrentLoggedInUser = user;
+            mainW = mainWindowVM;
         }
 
         public UserControl CurrentView
@@ -54,6 +57,11 @@ namespace ChatClient.ViewModel
                 }
                 currentLoggedInUser = value;
             }
+        }
+
+        internal void ChangeBackground(MemoryStream memoryStreamFile)
+        {
+            mainW.ChangeBackground(memoryStreamFile);
         }
 
         public string CurrentLoggedInUsername

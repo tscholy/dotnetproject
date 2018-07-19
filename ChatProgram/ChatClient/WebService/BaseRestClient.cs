@@ -22,14 +22,19 @@ namespace ChatClient.WebService
             var request = new RestRequest(route, Method.GET);
             request.AddParameter(id, objectid);
             IRestResponse<List<T>> response = client.Execute<List<T>>(request);
-            List<T> objects = response.Data;
+            List<T> objects = new List<T>();
+            if(response.Data != null)
+            {
+                objects = response.Data;
+            }
+                
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 return objects;
             }
             else
             {
-                return null;
+                return new List<T>();
             }
         }
 

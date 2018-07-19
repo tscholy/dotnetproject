@@ -30,7 +30,7 @@ namespace ChatClient.View
         public Chat(MainWindowVM mainWindow, UserRestClient userRestClient)
         {
             InitializeComponent();
-            chatVM = new ChatVM(userRestClient.CurrentUser);
+            chatVM = new ChatVM(userRestClient.CurrentUser, mainWindow);
             this.DataContext = chatVM;
             restClient = userRestClient;
             chatVM.CurrentContacts = userRestClient.GetAllContacts(userRestClient.CurrentUser.Id);
@@ -46,6 +46,11 @@ namespace ChatClient.View
         private void OpenChats_Button(object sender, RoutedEventArgs e)
         {
             chatVM.CurrentView = new ChatList(restClient.CurrentUser, chatVM);
+        }
+
+        private void OpenSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            chatVM.CurrentView = new Settings(chatVM);
         }
     }
 }

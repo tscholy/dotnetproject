@@ -42,8 +42,8 @@
                         </Rectangle>
                         <DockPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" LastChildFill="False" >
                             <Button Margin="10" Click="OpenChats_Button">Chats</Button>
-                            <Button Margin="10">Contacts</Button>
-                            <Button Margin="10">Settings</Button>
+                            <!--<Button Margin="10">Contacts</Button>-->
+                            <Button  Margin="10" Click="OpenSettings_OnClick">Settings</Button>
                         </DockPanel>
                     </Grid>
                     <ListView Grid.Row="1" ItemsSource="{Binding CurrentContacts}" SelectionChanged="SelectionChanged_ListView">
